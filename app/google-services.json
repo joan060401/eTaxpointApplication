@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "105353967769",
+    "firebase_url": "https://etaxpoint-1e025-default-rtdb.firebaseio.com",
+    "project_id": "etaxpoint-1e025",
+    "storage_bucket": "etaxpoint-1e025.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:105353967769:android:d7ebdb7d604ff4561c6008",
+        "android_client_info": {
+          "package_name": "com.example.etaxpointapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "105353967769-e4lhh4e66erritoqgk8jt25v0vbo5p0f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDO95jkfXuKfhV0nH6q9_NMWoPTYsHTmE0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "105353967769-e4lhh4e66erritoqgk8jt25v0vbo5p0f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

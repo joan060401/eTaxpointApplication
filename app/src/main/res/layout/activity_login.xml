@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:src="@drawable/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="170dp" />
+    <TextView
+        android:id="@+id/etax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="eTaxpoint Software Solutions Corp."
+        android:textSize="15dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:layout_below="@id/logo"/>
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="320dp"
+        android:layout_height="55dp"
+        android:layout_below="@id/etax"
+        android:layout_centerHorizontal="true"
+        android:textSize="18dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/semiround"
+        android:hint="Enter your username"
+        android:paddingStart="25dp"
+        android:textColor="@color/black" />
+    <EditText
+        android:layout_below="@id/username"
+        android:layout_width="320dp"
+        android:layout_height="55dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        android:textColor="@color/black"
+        android:hint="Enter your password"
+        android:paddingStart="25dp"
+        android:id="@+id/password"
+        android:textSize="18dp"
+        android:inputType="textPassword"
+        android:background="@drawable/semiround"/>
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/semiround"
+        android:backgroundTint="@color/blue"
+        android:letterSpacing="0.3"
+        android:text="Login"
+        android:textColor="@color/white"
+        android:textSize="18dp" />
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_below="@id/username"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></ProgressBar>
+
+</RelativeLayout>
