@@ -4,78 +4,143 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="365dp"
     android:layout_gravity="center"
-    android:layout_height="600dp"
+    android:layout_height="550dp"
   android:background="@drawable/semiround">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp">
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="160dp"
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/semiround"
+            android:backgroundTint="@color/blue"
+            android:text="00/00/0000"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/txt1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp">
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="55dp"
+            android:text="MEETING ID:"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/date"
-                android:layout_width="160dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/semiround"
-                android:backgroundTint="@color/blue"
-                android:layout_height="30dp"
-                android:textAlignment="center"
-                android:text="00/00/0000"
-                android:textSize="20dp"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:layout_centerHorizontal="true"
-                />
-            <TextView
-                android:id="@+id/txt1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:layout_marginTop="55dp"
-                android:text="MEETING ID:"/>
-            <TextView
-                android:layout_width="170dp"
-                android:id="@+id/IDmeeting"
-                android:layout_marginTop="52dp"
-                android:layout_marginStart="10dp"
-                android:layout_toRightOf="@+id/txt1"
-                android:layout_height="wrap_content"
-                android:textSize="18dp"
+        <TextView
+            android:id="@+id/IDmeeting"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="52dp"
+            android:layout_toRightOf="@+id/txt1"
+            android:textSize="18dp"
 
-                />
-            <EditText
-                android:layout_width="300dp"
-                android:id="@+id/title"
-                android:layout_below="@id/IDmeeting"
-                android:layout_height="42dp"
-                android:textSize="18dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/box"
-                android:layout_centerHorizontal="true"
-                android:hint="TITLE"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textAlignment="center"
-                />
-            <EditText
-                android:layout_width="300dp"
-                android:id="@+id/location"
-                android:layout_below="@id/title"
-                android:layout_height="42dp"
-                android:textSize="18dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/box"
-                android:layout_centerHorizontal="true"
-                android:hint="LOCATION"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textAlignment="center"
-                />
+            />
 
+        <EditText
+            android:id="@+id/title"
+            android:layout_width="300dp"
+            android:layout_height="42dp"
+            android:layout_below="@id/IDmeeting"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/box"
+            android:hint="TITLE"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
-        </RelativeLayout>
+        <EditText
+            android:id="@+id/location"
+            android:layout_width="300dp"
+            android:layout_height="42dp"
+            android:layout_below="@id/title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/box"
+            android:hint="LOCATION"
+            android:maxLines="2"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/fromDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/location"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="60dp"
+            android:text="00:00" />
+
+        <TextView
+            android:id="@+id/txt2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/location"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="70dp"
+            android:layout_toRightOf="@+id/fromDate"
+            android:text="-"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/toDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/location"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="60dp"
+            android:layout_toRightOf="@+id/txt2"
+            android:text="00:00" />
+
+        <EditText
+            android:id="@+id/description"
+            android:layout_width="300dp"
+            android:layout_height="82dp"
+            android:layout_below="@id/txt2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/box"
+            android:hint="Description"
+            android:maxLines="4"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:backgroundTint="@color/lightblue"
+            android:background="@drawable/semiround"
+            android:layout_below="@id/description"
+            android:text="save"
+            android:textColor="@color/white"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            />
+
+    </RelativeLayout>
 
 
 
