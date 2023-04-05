@@ -15,9 +15,6 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".meeting_schedule"
-            android:exported="false" />
-        <activity
             android:name=".newSched"
             android:exported="false" />
         <activity

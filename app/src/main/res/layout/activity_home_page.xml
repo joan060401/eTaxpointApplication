@@ -11,6 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@color/blue" />
+    <ImageView
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:src="@drawable/logout"
+        android:layout_alignParentRight="true"/>
+
 
     <ImageView
         android:id="@+id/logo"
@@ -29,23 +36,23 @@
         android:textColor="@color/black"
         android:layout_below="@id/logo"/>
 
-    <CalendarView
-        android:id="@+id/calendar"
+        <CalendarView
+            android:id="@+id/calendar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etax"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="11dp"
+            android:background="@drawable/semiround" />
+
+        <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="11dp"
-        android:layout_below="@+id/etax"
-        android:background="@drawable/semiround"
-        android:layout_marginLeft="11dp"/>
-
-    <ImageView
-        android:id="@+id/logout"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:src="@drawable/logout"
-        android:layout_alignParentRight="true"/>
+        android:id="@+id/meetings_sched"
+        android:layout_below="@id/calendar">
 
 
+    </androidx.recyclerview.widget.RecyclerView>
 
 </RelativeLayout>

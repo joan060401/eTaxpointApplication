@@ -21,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -71,6 +72,7 @@ private String stringDateSelected;
         dialog.setContentView(R.layout.activity_new_sched);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         Button savebtn= dialog.findViewById(R.id.save);
+        ImageButton close=dialog.findViewById(R.id.close);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference usersRef = db.collection("users");
         DocumentReference newDocRef = usersRef.document();
@@ -90,6 +92,12 @@ private String stringDateSelected;
 
         date.setText(stringDateSelected);
 
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.hide();
+            }
+        });
         from.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
