@@ -4,7 +4,29 @@ import java.util.Date;
 
 public class Meetings {
 
-    String title_m,location_m ,des_m, fromdate_m, todate_m,id_m;
+    String title_m,location_m ,des_m, fromdate_m, todate_m,id_m,date_m;
+
+    public Meetings() {
+
+    }
+
+    public Meetings(String title_m, String location_m, String des_m , String fromdate_m, String todate_m, String id_m,String date_m){
+        this.title_m =title_m;
+        this.location_m= location_m;
+        this.des_m=des_m;
+        this.todate_m=todate_m;
+        this.fromdate_m=fromdate_m;
+        this.id_m=id_m;
+        this.date_m=date_m;
+
+    }
+    public String getDate_m() {
+        return date_m;
+    }
+
+    public void setDate_m(String date_m) {
+        this.date_m = date_m;
+    }
 
     public String getTitle_m() {
         return title_m;
@@ -54,13 +76,5 @@ public class Meetings {
         this.id_m = id_m;
     }
 
-    public Meetings(String title_m, String location_m, String des_m , String fromdate_m, String todate_m, String id_m){
-        this.title_m =title_m;
-        this.location_m= location_m;
-        this.des_m=des_m;
-        this.todate_m=todate_m;
-        this.fromdate_m=fromdate_m;
-        this.id_m=id_m;
 
-    }
 }

@@ -5,54 +5,68 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomePage">
-
-
     <View
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/blue" />
+        android:layout_height="35dp"
+        android:background="@color/blue"
+        />
+
     <ImageView
         android:id="@+id/logout"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
         android:src="@drawable/logout"
         android:layout_alignParentRight="true"/>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="36dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:src="@drawable/logo"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"/>
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:src="@drawable/logo"
-        android:layout_marginTop="57dp"
-        android:layout_centerHorizontal="true"/>
-    <TextView
-        android:id="@+id/etax"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="eTaxpoint Software Solutions Corp."
-        android:textSize="15dp"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/black"
-        android:layout_below="@id/logo"/>
+        <TextView
+            android:id="@+id/etax"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="eTaxpoint Software Solutions Corp."
+            android:textSize="15dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/black"
+            android:layout_below="@id/logo"/>
 
-        <CalendarView
-            android:id="@+id/calendar"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/etax"
-            android:layout_marginLeft="11dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginRight="11dp"
-            android:background="@drawable/semiround" />
+            android:id="@+id/cal">
+
+            <CalendarView
+                android:id="@+id/calendar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="11dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="11dp"
+                android:background="@drawable/semiround"/>
+
+        </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/meetings_sched"
-        android:layout_below="@id/calendar">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/meetinglist"
+            android:layout_below="@id/cal"/>
 
+    </RelativeLayout>
 
-    </androidx.recyclerview.widget.RecyclerView>
-
+</ScrollView>
 </RelativeLayout>
