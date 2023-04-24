@@ -1,11 +1,9 @@
 package com.example.etaxpointapplication;
 
 import android.content.Context;
-import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,16 +13,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter {
+ private OnItemClickListener mListener;
 
  private Context mContext;
  private GradeAdapter mGradeAdapter;
- private viewSched mlistener;
+ private OnItemClickListener mlistener;
+
+
  public void setConfig(RecyclerView recyclerView, Context context, List<Meetings> list, List<String> keys) {
   mContext = context;
   mGradeAdapter = new GradeAdapter(list,keys);
   recyclerView.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false));
   recyclerView.setAdapter(mGradeAdapter);
  }
+
+
  @NonNull
  @Override
  public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -44,9 +47,11 @@ public class MyAdapter extends RecyclerView.Adapter {
  public interface OnItemClickListener {
   void onItemClick(int position);
  }
+ public void setOnItemClickListener(final OnItemClickListener listener) {
+  mlistener =  listener;
+ }
 
-
- class GradeList extends RecyclerView.ViewHolder {
+ class GradeList extends RecyclerView.ViewHolder implements View.OnClickListener {
   TextView date, totime, fromtime, title;
 
   public GradeList(View view) {
@@ -56,6 +61,7 @@ public class MyAdapter extends RecyclerView.Adapter {
    totime = itemView.findViewById(R.id.totime_list);
    fromtime = itemView.findViewById(R.id.fromtime_list);
    title = itemView.findViewById(R.id.title_list);
+   itemView.setOnClickListener(this);
 
 
   }
@@ -68,6 +74,16 @@ public class MyAdapter extends RecyclerView.Adapter {
 
   }
 
+  @Override
+  public void onClick(View v) {
+   int position = getAdapterPosition();
+   if (position != RecyclerView.NO_POSITION) {
+    // Call the onItemClick method of the listener interface
+    mlistener.onItemClick(position);
+
+   }
+
+  }
  }
  class GradeAdapter extends RecyclerView.Adapter<GradeList> {
   private List<Meetings> list;
@@ -98,5 +114,6 @@ public class MyAdapter extends RecyclerView.Adapter {
   }
 
  }
+
 
 }

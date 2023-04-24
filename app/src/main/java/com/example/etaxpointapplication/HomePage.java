@@ -45,7 +45,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.Calendar;
 import java.util.List;
 
-public class HomePage extends AppCompatActivity implements viewSched {
+public class HomePage extends AppCompatActivity {
     private CalendarView calendarView;
     private TimePickerDialog open_Timedialog;
     private Button from, to;
@@ -109,8 +109,14 @@ private String stringDateSelected;
 
             }
         });
-
-
+        adapter.setOnItemClickListener(new MyAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent = new Intent(HomePage.this, newSched.class);
+                intent.putExtra("item_position", position);
+              startActivity(intent);
+            }
+        });
     }
 
     private void createNotificationChannel() {
@@ -270,9 +276,6 @@ private String stringDateSelected;
       return networkInfo!= null && networkInfo.isConnected();
   }
 
-    @Override
-    public void onItemClick(int position) {
 
-    }
 }
 
