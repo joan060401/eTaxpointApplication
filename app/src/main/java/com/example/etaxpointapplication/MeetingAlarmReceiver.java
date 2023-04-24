@@ -1,6 +1,7 @@
 package com.example.etaxpointapplication;
 
 import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -18,13 +19,18 @@ public class MeetingAlarmReceiver extends BroadcastReceiver {
         String location = intent.getStringExtra("location");
         String description = intent.getStringExtra("description");
 
+        Intent i = new Intent(context,HomePage.class);
+        PendingIntent pendingIntent =PendingIntent.getActivity(context,0,i,0);
+
         // Show a notification with the meeting details
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "meeting_channel")
                 .setSmallIcon(R.drawable.logout)
                 .setContentTitle(title)
                 .setContentText(description + "\nLocation: " + location)
+                .setAutoCancel(true)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setAutoCancel(true);
+                .setDefaults(NotificationCompat.DEFAULT_ALL)
+                .setContentIntent(pendingIntent);
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
 
@@ -38,6 +44,6 @@ public class MeetingAlarmReceiver extends BroadcastReceiver {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        notificationManager.notify(0, builder.build());
+        notificationManager.notify(123, builder.build());
     }
 }

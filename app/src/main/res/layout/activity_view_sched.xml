@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="365dp"
+    android:layout_gravity="center"
+    android:layout_height="550dp"
+    android:background="@drawable/semiround">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp">
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="160dp"
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/semiround"
+            android:backgroundTint="@color/lightblue"
+            android:text="00/00/0000"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/txt1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="65dp"
+            android:text="MEETING ID:"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/IDmeeting"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="62dp"
+            android:layout_toRightOf="@+id/txt1"
+            android:textSize="18dp"
+
+            />
+
+        <EditText
+            android:id="@+id/title"
+            android:layout_width="300dp"
+            android:editable="false"
+            android:layout_height="42dp"
+            android:layout_below="@id/IDmeeting"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/box"
+            android:hint="TITLE"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+        <EditText
+            android:id="@+id/location"
+            android:layout_width="300dp"
+            android:editable="false"
+            android:layout_height="42dp"
+            android:layout_below="@id/title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/box"
+            android:hint="LOCATION"
+            android:maxLines="2"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/fromDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt3"
+            android:clickable="false"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/semiround"
+            android:text="00:00" />
+        <TextView
+            android:id="@+id/txt3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/location"
+            android:layout_marginStart="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="Date"
+            android:clickable="false"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            />
+
+        <TextView
+            android:id="@+id/txt2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt3"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/fromDate"
+            android:text="-"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/toDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt3"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:clickable="false"
+            android:background="@drawable/semiround"
+            android:layout_toRightOf="@+id/txt2"
+            android:text="00:00" />
+        <EditText
+            android:id="@+id/description"
+            android:layout_width="300dp"
+            android:layout_height="82dp"
+            android:layout_below="@id/txt2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/box"
+            android:hint="Description"
+            android:maxLines="4"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="110dp"
+            android:layout_height="47dp"
+            android:backgroundTint="@color/lightblue"
+            android:background="@drawable/semiround"
+            android:layout_below="@id/description"
+            android:text="Edit"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="2dp"
+            />
+
+        <Button
+            android:id="@+id/savenew"
+            android:layout_width="110dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="15dp"
+            android:backgroundTint="@color/red"
+            android:background="@drawable/semiround"
+            android:layout_below="@id/save"
+            android:text="save/new"
+            android:visibility="gone"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="20dp"
+            />
+        <ImageButton
+            android:id="@+id/close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/close"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp"
+            android:background="@null"/>
+
+
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
