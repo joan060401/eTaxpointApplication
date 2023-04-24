@@ -25,7 +25,6 @@ public class MyAdapter extends RecyclerView.Adapter {
   recyclerView.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false));
   recyclerView.setAdapter(mGradeAdapter);
  }
-
  @NonNull
  @Override
  public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
