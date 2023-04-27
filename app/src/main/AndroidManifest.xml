@@ -18,9 +18,11 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".viewingSched"
+            android:exported="false" />
+        <activity
             android:name=".item"
             android:exported="false" />
-
         <activity
             android:name=".newSched"
             android:exported="false" />

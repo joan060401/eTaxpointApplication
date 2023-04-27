@@ -1,14 +1,28 @@
 package com.example.etaxpointapplication;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
@@ -26,7 +40,6 @@ public class MyAdapter extends RecyclerView.Adapter {
   recyclerView.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false));
   recyclerView.setAdapter(mGradeAdapter);
  }
-
 
  @NonNull
  @Override
@@ -53,6 +66,7 @@ public class MyAdapter extends RecyclerView.Adapter {
 
  class GradeList extends RecyclerView.ViewHolder implements View.OnClickListener {
   TextView date, totime, fromtime, title;
+  CardView layout;
 
   public GradeList(View view) {
    super(view);
@@ -61,6 +75,7 @@ public class MyAdapter extends RecyclerView.Adapter {
    totime = itemView.findViewById(R.id.totime_list);
    fromtime = itemView.findViewById(R.id.fromtime_list);
    title = itemView.findViewById(R.id.title_list);
+   layout=itemView.findViewById(R.id.layoutcard);
    itemView.setOnClickListener(this);
 
 
@@ -105,13 +120,88 @@ public class MyAdapter extends RecyclerView.Adapter {
 
   @Override
   public void onBindViewHolder(@NonNull GradeList holder, int position) {
+   final Meetings data_position = list.get(position);
    holder.bind(list.get(position), mKeys.get(position));
-  }
+   holder.title.setText(list.get(position).getTitle_m());
+   holder.date.setText(list.get(position).getDate_m());
+   holder.totime.setText(list.get(position).getTodate_m());
+   holder.fromtime.setText(list.get(position).getFromdate_m());
 
+   holder.layout.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+    /* Intent intent = new Intent(v.getContext(),viewingSched.class);
+     intent.putExtra("titlev",data_position.getTitle_m());
+     intent.putExtra("locationv",data_position.getLocation_m());
+     intent.putExtra("descriptionv",data_position.getDes_m());
+     v.getContext().startActivity(intent); */
+     Dialog dialog = new Dialog(v.getContext());
+     dialog.setContentView(R.layout.activity_viewing_sched);
+     dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+     EditText titlev = dialog.findViewById(R.id.titleV);
+     EditText locationv = dialog.findViewById(R.id.locationV);
+     EditText descriptionv = dialog.findViewById(R.id.descriptionV);
+     ImageButton closev =dialog.findViewById(R.id.closeV);
+     ImageButton deletev =dialog.findViewById(R.id.deleteV);
+     ImageButton edit =dialog.findViewById(R.id.editV);
+     Button save = dialog.findViewById(R.id.saveV);
+     TextView id= dialog.findViewById(R.id.IDmeetingV);
+
+     dialog.show();
+
+     titlev.setText(data_position.getTitle_m());
+     locationv.setText(data_position.getLocation_m());
+     descriptionv.setText(data_position.getDes_m());
+     id.setText(data_position.getId_m());
+
+
+     save.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+      String title =titlev.getText().toString();
+      String location =locationv.getText().toString();
+      String destription =descriptionv.getText().toString();
+       save.setVisibility(View.INVISIBLE);
+      }
+     });
+
+
+     closev.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+       dialog.hide();
+      }
+     });
+     deletev.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+       //delete files
+      }
+     });
+     edit.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+       save.setVisibility(View.VISIBLE);
+      }
+     });
+    }
+   });
+  }
   @Override
   public int getItemCount() {
    return list.size();
   }
+
+ }
+ private void updatemeeting(String titlev,String locationv,String description){
+
+ /* DatabaseReference DbRef = FirebaseDatabase.getInstance().getReference("Meetings");
+  FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+  String userUid = user.getUid();
+
+  Meetings meetings = new Meetings(titlev,locationv,descriptionv);
+  DbRef.child(userUid).setValue(meetings); */
+
 
  }
 

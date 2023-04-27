@@ -58,13 +58,14 @@ public class HomePage extends AppCompatActivity {
     PowerManager powerManager;
     PowerManager.WakeLock wakeLock;
     private MaterialTimePicker picker;
+    private List<Meetings> list;
 private String stringDateSelected;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         calendarView = findViewById(R.id.calendar);
-        binding= ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
 
         createNotificationChannel();
 
@@ -83,40 +84,51 @@ private String stringDateSelected;
             }
 
 
-             @Override
-             public void DataIsInserted() {
+            @Override
+            public void DataIsInserted() {
 
-             }
+            }
 
-             @Override
-             public void DataIsUpdated() {
+            @Override
+            public void DataIsUpdated() {
 
-             }
+            }
 
-             @Override
-             public void DataIsDeleted() {
+            @Override
+            public void DataIsDeleted() {
 
-             }
-         });
-
+            }
+        });
 
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
-            public void onSelectedDayChange(@NonNull CalendarView calendarView,  int year, int month, int dayOfMonth) {
-                stringDateSelected =Integer.toString(month +1) + "/" +Integer.toString(dayOfMonth) + "/"+ Integer.toString(year);
+            public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth) {
+                stringDateSelected = Integer.toString(month + 1) + "/" + Integer.toString(dayOfMonth) + "/" + Integer.toString(year);
                 calendarclicked(stringDateSelected);
 
             }
         });
-        adapter.setOnItemClickListener(new MyAdapter.OnItemClickListener() {
+       /* adapter.setOnItemClickListener(new MyAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Intent intent = new Intent(HomePage.this, newSched.class);
-                intent.putExtra("item_position", position);
-              startActivity(intent);
+                dialog = new Dialog(HomePage.this);
+                dialog.setContentView(R.layout.activity_view_sched);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                Button edit= dialog.findViewById(R.id.edit);
+                Button save= dialog.findViewById(R.id.save);
+
+                edit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        save.visi
+                    }
+                });
+                dialog.show();
+
+
             }
-        });
+*/
     }
 
     private void createNotificationChannel() {

@@ -1,10 +1,9 @@
 package com.example.etaxpointapplication;
 
-import java.util.Date;
-
 public class Meetings {
 
     String title_m,location_m ,des_m, fromdate_m, todate_m,id_m,date_m;
+
 
     public Meetings() {
 
