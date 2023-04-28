@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomePage">
+
     <View
         android:layout_width="match_parent"
         android:layout_height="35dp"
@@ -17,6 +18,13 @@
         android:layout_height="35dp"
         android:src="@drawable/logout"
         android:layout_alignParentRight="true"/>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:id="@+id/refreshswipe">
+
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -64,9 +72,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/meetinglist"
-            android:layout_below="@id/cal"/>
-
+            android:layout_below="@id/cal">
+            <!-- Your content here -->
+        </androidx.recyclerview.widget.RecyclerView>
     </RelativeLayout>
 
 </ScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 </RelativeLayout>

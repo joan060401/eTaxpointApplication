@@ -23,8 +23,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.ktx.Firebase;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MyAdapter extends RecyclerView.Adapter {
  private OnItemClickListener mListener;
@@ -146,7 +149,7 @@ public class MyAdapter extends RecyclerView.Adapter {
      ImageButton edit =dialog.findViewById(R.id.editV);
      Button save = dialog.findViewById(R.id.saveV);
      TextView id= dialog.findViewById(R.id.IDmeetingV);
-
+     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("Meetings");
      dialog.show();
 
      titlev.setText(data_position.getTitle_m());
@@ -160,8 +163,14 @@ public class MyAdapter extends RecyclerView.Adapter {
       public void onClick(View v) {
       String title =titlev.getText().toString();
       String location =locationv.getText().toString();
-      String destription =descriptionv.getText().toString();
+      String description =descriptionv.getText().toString();
        save.setVisibility(View.INVISIBLE);
+       save.setVisibility(View.VISIBLE);
+       titlev.setEnabled(false);
+       descriptionv.setEnabled(false);
+       locationv.setEnabled(false);
+
+
       }
      });
 
@@ -175,13 +184,27 @@ public class MyAdapter extends RecyclerView.Adapter {
      deletev.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-       //delete files
+
+
+       // Delete the data for the corresponding item from the Firebase Realtime Database
+       FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+       String userUid = user.getUid();
+       mDatabase.child(userUid).child(list.get(position).getId_m()).removeValue();
+
+       // Remove the item from the RecyclerView dataset
+       list.remove(position);
+
+       // Notify the adapter that the item has been removed from the dataset
+       mGradeAdapter.notifyItemRemoved(position);
       }
      });
      edit.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
        save.setVisibility(View.VISIBLE);
+       titlev.setEnabled(true);
+       descriptionv.setEnabled(true);
+       locationv.setEnabled(true);
       }
      });
     }
@@ -193,14 +216,16 @@ public class MyAdapter extends RecyclerView.Adapter {
   }
 
  }
- private void updatemeeting(String titlev,String locationv,String description){
+ private void updatemeeting(String title,String location,String description){
 
- /* DatabaseReference DbRef = FirebaseDatabase.getInstance().getReference("Meetings");
+  DatabaseReference DbRef = FirebaseDatabase.getInstance().getReference("Meetings");
   FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
   String userUid = user.getUid();
 
-  Meetings meetings = new Meetings(titlev,locationv,descriptionv);
-  DbRef.child(userUid).setValue(meetings); */
+  Meetings meetings = new Meetings(title,location,description);
+  DbRef.child(userUid).setValue(meetings);
+
+
 
 
  }

@@ -5,7 +5,10 @@ public class Meetings {
     String title_m,location_m ,des_m, fromdate_m, todate_m,id_m,date_m;
 
 
-    public Meetings() {
+    public Meetings(String titlev, String locationv, String descriptionv) {
+
+    }
+    public Meetings(){
 
     }
 
