@@ -19,6 +19,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -58,6 +60,15 @@ public class MyAdapter extends RecyclerView.Adapter {
  @Override
  public int getItemCount() {
   return 0;
+ }
+
+ public void setData(List<Meetings> myDataList) {
+ }
+
+ public void clear() {
+ }
+
+ public void addAll(List<Meetings> myDataList) {
  }
 
  public interface OnItemClickListener {
@@ -123,12 +134,13 @@ public class MyAdapter extends RecyclerView.Adapter {
 
   @Override
   public void onBindViewHolder(@NonNull GradeList holder, int position) {
-   final Meetings data_position = list.get(position);
-   holder.bind(list.get(position), mKeys.get(position));
-   holder.title.setText(list.get(position).getTitle_m());
-   holder.date.setText(list.get(position).getDate_m());
-   holder.totime.setText(list.get(position).getTodate_m());
-   holder.fromtime.setText(list.get(position).getFromdate_m());
+
+   final Meetings data_position = list.get(holder.getAdapterPosition());
+   holder.bind(data_position, mKeys.get(holder.getAdapterPosition()));
+   holder.title.setText(data_position.getTitle_m());
+   holder.date.setText(data_position.getDate_m());
+   holder.totime.setText(data_position.getTodate_m());
+   holder.fromtime.setText(data_position.getFromdate_m());
 
    holder.layout.setOnClickListener(new View.OnClickListener() {
     @Override
@@ -144,6 +156,14 @@ public class MyAdapter extends RecyclerView.Adapter {
      EditText titlev = dialog.findViewById(R.id.titleV);
      EditText locationv = dialog.findViewById(R.id.locationV);
      EditText descriptionv = dialog.findViewById(R.id.descriptionV);
+     TextView datev =dialog.findViewById(R.id.dateV);
+     TextView idmeetingv=dialog.findViewById(R.id.IDmeetingV);
+     Button fromdatev=dialog.findViewById(R.id.fromDateV);
+     Button todatev =dialog.findViewById(R.id.toDateV);
+
+
+
+
      ImageButton closev =dialog.findViewById(R.id.closeV);
      ImageButton deletev =dialog.findViewById(R.id.deleteV);
      ImageButton edit =dialog.findViewById(R.id.editV);
@@ -161,14 +181,36 @@ public class MyAdapter extends RecyclerView.Adapter {
      save.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-      String title =titlev.getText().toString();
-      String location =locationv.getText().toString();
-      String description =descriptionv.getText().toString();
+      String title_m =titlev.getText().toString().trim();
+      String location_m =locationv.getText().toString().trim();
+      String des_m =descriptionv.getText().toString().trim();
+      String fromdate_m =fromdatev.getText().toString().trim();
+      String todate_m=todatev.getText().toString().trim();
+      String date_m =datev.getText().toString().trim();
+      String id_m=idmeetingv.getText().toString().trim();
+       FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+       String userUid = user.getUid();
+      Meetings meetings = new Meetings(title_m,location_m ,des_m, fromdate_m, todate_m,id_m,date_m);
+       DatabaseReference referenceProfile = FirebaseDatabase.getInstance().getReference("Meetings");
+
        save.setVisibility(View.INVISIBLE);
        save.setVisibility(View.VISIBLE);
        titlev.setEnabled(false);
        descriptionv.setEnabled(false);
        locationv.setEnabled(false);
+
+       referenceProfile.child(userUid).child(id_m).setValue(meetings).addOnCompleteListener(new OnCompleteListener<Void>() {
+        @Override
+        public void onComplete(@NonNull Task<Void> task) {
+         if(task.isSuccessful()){
+          Toast.makeText(save.getContext(), "Meeting saved", Toast.LENGTH_SHORT).show();
+          dialog.hide();
+
+         } else {
+          Toast.makeText(save.getContext(), "Meeting not saved", Toast.LENGTH_SHORT).show();
+         }
+        }
+       });
 
 
       }

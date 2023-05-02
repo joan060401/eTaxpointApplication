@@ -1,5 +1,7 @@
 package com.example.etaxpointapplication;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,6 +12,7 @@ import android.app.Dialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.TaskInfo;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +23,7 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -89,7 +93,6 @@ private String stringDateSelected;
         recyclerView = findViewById(R.id.meetinglist);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        swipeRefreshLayout.setEnabled(true);
         new FirebaseDatabaseHelper().viewMeetings(new FirebaseDatabaseHelper.DataStatus() {
             @Override
             public void DataIsLoaded(List<Meetings> list, List<String> keys) {
@@ -117,14 +120,18 @@ private String stringDateSelected;
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                list.clear();
-                databaseRef.child(userUid).addListenerForSingleValueEvent(new ValueEventListener() {
+                adapter.clear();
+                Log.d(TAG, "onRefresh: called");
+                swipeRefreshLayout.setRefreshing(true);
+                databaseRef.child(userUid).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot dataSnapshot: snapshot.getChildren()){
-                            Meetings meetings =dataSnapshot.getValue(Meetings.class);
-                            list.add(meetings);
+                        List<Meetings> myDataList = new ArrayList<>();
+                        for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
+                            Meetings meetings = dataSnapshot.getValue(Meetings.class);
+                            myDataList.add(meetings);
                         }
+                        adapter.addAll(myDataList);
                         adapter.notifyDataSetChanged();
                         swipeRefreshLayout.setRefreshing(false);
                     }
@@ -164,6 +171,7 @@ private String stringDateSelected;
         dialog.setContentView(R.layout.activity_new_sched);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         Button savebtn= dialog.findViewById(R.id.save);
+        Button savenew=dialog.findViewById(R.id.savenew);
         ImageButton close=dialog.findViewById(R.id.close);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference usersRef = db.collection("users");
@@ -287,6 +295,19 @@ private String stringDateSelected;
 
                     }
                 });
+            }
+        });
+
+        savenew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                title.setText(null);
+                location.setText(null);
+                description.setText(null);
+                meetingid.setText(null);
+                from.setText("0:00");
+                to.setText("0:00");
+
             }
         });
         dialog.show();
