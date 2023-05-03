@@ -120,7 +120,7 @@ private String stringDateSelected;
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                adapter.clear();
+              /*  adapter.clear();
                 Log.d(TAG, "onRefresh: called");
                 swipeRefreshLayout.setRefreshing(true);
                 databaseRef.child(userUid).addValueEventListener(new ValueEventListener() {
@@ -137,9 +137,12 @@ private String stringDateSelected;
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        swipeRefreshLayout.setRefreshing(false);
+                        swipeRefreshLayout.se   tRefreshing(false);
                     }
-                });
+                }); */
+
+                Intent intent = new Intent(HomePage.this, HomePage.class);
+              startActivity(intent);
             }
         });
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
